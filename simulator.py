@@ -146,3 +146,24 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+name: Run AI Life Simulator
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-simulator:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run simulator
+        run: python3 simulator.py --choice start_business --samples 3 --seed 42
+
